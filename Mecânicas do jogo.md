@@ -1,0 +1,21 @@
+
+- m* n grid
+- scoring system
+	- 100 points and decreases with each detection
+	- **Grid Size Impact:** Let the grid be m×n, so the total number of cells is m⋅n.
+	- **Penalty per Detection:** The penalty for each detection is 100m⋅n\frac{100}{m \cdot n}m⋅n100​. Each detection subtracts this amount from the current score.
+- detect mode 
+	- Signal Strength Probability - use the probability tables provided in the project document to assign signal strengths based on the distance d from treasure
+		- d=0. Strong signals like + + + + most likely
+		- d >= 3. Weak signals like + are most likely
+	- Update probabilities: After each detection, update the probability for every cell on the grid to reflect the new information
+		- Bayesian approach: update the probability for each cell based on the detected signal and its distance from the treasure.
+	- pseudo-code
+		- function detect(cell):
+			- distance = calculate_distance(cell, treasure_position)
+			- signal = generate_signal(distance, probability_table)
+			- update_grid_probabilities(signal, cell, grid)
+			- score -= 100/ (grid_rows * grid_cols)
+			- return signal, score
+- dig mode
+- detector mechanics
